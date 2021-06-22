@@ -1,0 +1,40 @@
+h2 {
+  color: purple;
+  font-size: 25px;
+  font-style: italic;
+}
+
+form {
+  color: darkblue;
+  font-size: 17px;
+  padding-top: 3px;
+  padding-right: 5px;
+}
+
+.person {
+  color: darkolivegreen;
+  font-size: 18px;
+  font-style: italic;
+  padding-top: 3px;
+  padding-right: 5px;
+}
+
+.notification {
+  color: green;
+  background: lightgray;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.error-notification {
+  color: red;
+  background: lightgray;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
