@@ -4,16 +4,9 @@ const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
 
-const generateID = () => {
-    // claculate next id val
-    const maxID = persons.length > 0 ? 
-    Math.max(...persons.map(p => p.id)) : 0
-
-    return maxID + 1
-}
-
 // middleware in execution order
 app.use(cors())
+app.use(express.static('build'))
 app.use(express.json())
 
 morgan.token("json", function(req, res) {
@@ -22,6 +15,14 @@ morgan.token("json", function(req, res) {
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :json')
 )
+
+const generateID = () => {
+    // claculate next id val
+    const maxID = persons.length > 0 ? 
+    Math.max(...persons.map(p => p.id)) : 0
+
+    return maxID + 1
+}
 
 
 let persons = [
@@ -55,15 +56,12 @@ app.get('/info', (request, response) => {
 })
 
 app.get('/api/persons', (request, response) => {
-    response.set('Access-Control-Allow-Origin', 'http://localhost:3000')
     response.json(persons)
 })
 
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     const person = persons.find(p => p.id === id)
-
-    response.set('Access-Control-Allow-Origin', 'http://localhost:3000')
 
     if (person) {
         response.json(person)
@@ -75,8 +73,6 @@ app.get('/api/persons/:id', (request, response) => {
 app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     persons = persons.filter(p => p.id !== id)
-
-    response.set({'Access-Control-Allow-Origin': 'http://localhost:3000', 'X-Requested-With': 'XMLHttpRequest'})
     response.status(204).end()
 })
 
@@ -109,7 +105,6 @@ app.post('/api/persons', (request, response) => {
         console.log(`posting ${newPerson.id}`)
     
         persons.concat(newPerson)
-        response.set('Access-Control-Allow-Origin', 'http://localhost:3000')
         response.json(newPerson)
     }
 })
@@ -120,7 +115,7 @@ const unknownEndpoint = (request, response) => {
 
 app.use(unknownEndpoint)
 
-const port = 3001
-app.listen(port)
-
-console.log(`server running on port ${port}`)
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`)
+})

@@ -19,6 +19,7 @@
     "eject": "react-scripts eject",
     "server": "json-server -p3001 --watch db.json"
   },
+  "propxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -36,6 +37,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://localhost:3000"
+  }
 }

@@ -70,7 +70,7 @@ const App = (props) => {
 
   return(
     <>
-      <h2>All Notes</h2>
+      <h2>All Notes:</h2>
       <Notification message = {errorMessage} />
       <div>
         <button onClick = {() => setShowAll(!showAll)}>

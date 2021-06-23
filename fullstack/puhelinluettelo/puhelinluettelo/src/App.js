@@ -25,7 +25,7 @@ const App = (props) => {
 
   const personsToDisplay = persons.filter(
     person => person.name.toLowerCase().includes(filterTerm.toLowerCase())
-  )
+    )
 
   const addPerson = (event) => {
     event.preventDefault()

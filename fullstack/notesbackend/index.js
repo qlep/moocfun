@@ -4,9 +4,10 @@ const app = express()
 
 const cors = require('cors')
 
-// use json parser
+// use json parser and other middleware
 app.use(express.json())
 app.use(cors())
+app.use(express.static('build'))
 
 let notes = [
     {
@@ -86,7 +87,7 @@ app.post('/api/notes', (request, response) => {
 })
 
 
-const port = 3001
-app.listen(port)
-
-console.log(`server running on port ${port}`)
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`)
+})
